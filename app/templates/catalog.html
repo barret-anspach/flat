@@ -1,0 +1,89 @@
+<section id="catalog" class="panels">
+    <h1>Our catalog</h1>
+
+    <div class="catalog-list">
+        <div class="catalog-item" ng-repeat="model in strap.models" ng-class="cls($index)">
+
+            <div class="item-overview">
+                <div class="item-image" background-img="{{ model.image }}" ng-click="selectModel(model)"></div>
+                <div class="item-title">
+                    <h3><a ng-click="selectModel(model)">{{ model.title }}</a></h3>
+                </div>
+            </div>
+
+            <aside class="item-detail" ng-show="selectedModel.id == model.id">
+                <span class="hide-detail glyphicon glyphicon-remove" ng-click="unSelectModel()"></span>
+
+                <!-- COLOR NAME -->
+
+                <div class="item-sizes item-name" ng-show="selectedColor">
+                    <h2>{{ selectedColor.name }} <span class="item-price">$169.95</span></h2>
+                </div>
+
+                <!-- COLOR OPTIONS -->
+
+                <div class="item-options">
+                    <div class="item-color-options" ng-repeat="color in model.colors">
+
+                        <a ng-click="selectColor(color)">
+                            <div class="item-color" background-img color="{{ color.rgb }}" tooltip="{{ color.name }}">
+                                <span ng-show="selectedColor.id == color.id" class="color-selected glyphicon glyphicon-ok"></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- SIZE OPTIONS -->
+
+                <div class="item-sizes" ng-show="selectedColor">
+                    <p class="item-men-sizes" ng-repeat="man in selectedColor.men">
+                            <span ng-show="man.regulars.length">
+                                Men's Reg.
+                                <span class="item-size" ng-repeat="regular in man.regulars" ng-class="{selected: selectedSize.id == regular.id}"
+                                      ng-click="selectSize(regular)">{{ regular.no }}</span>
+                            </span>
+                        <br>
+                            <span ng-show="man.longs.length">
+                                Long
+                                <span class="item-size" ng-repeat="long in man.longs" ng-class="{selected: selectedSize.id == long.id}"
+                                      ng-click="selectSize(long)">{{ long.no }}</span>
+                            </span>
+                    </p>
+                    <p class="item-women-sizes" ng-repeat="woman in selectedColor.women">
+                            <span ng-show="woman.regulars.length">
+                                Women's Reg.
+                                <span class="item-size" ng-repeat="regular in woman.regulars" ng-class="{selected: selectedSize.id == regular.id}"
+                                      ng-click="selectSize(regular)">{{ regular.no }}</span>
+                            </span>
+                        <br>
+                            <span ng-show="woman.longs.length">
+                                Long
+                                <span class="item-size" ng-repeat="long in woman.longs" ng-class="{selected: selectedSize.id == long.id}"
+                                      ng-click="selectSize(long);">{{ long.no }}</span>
+                            </span>
+                    </p>
+                </div>
+
+                <!-- QUANTITY -->
+
+                <div class="item-quantity" ng-show="selectedStrap">
+                    <p>Quantity: <span class="quantity-picker">2</span></p>
+                </div>
+
+                <!-- ITEM DETAILS -->
+
+                <p>Eventually, specs and other things will live here: popup with dimensions, links to "learn more" material, etc.</p>
+
+                <!--<p ng-show="selectedStrap" blink="{{selectedStrap}}">{{ selectedStrap }}</p>-->
+                <!-- ADD TO CART -->
+
+                <div class="cart-button" ng-class="{disabled: !selectedStrap}">
+                    <h4>Add to cart</h4>
+                </div>
+                <span class="selected-item" ng-show="selectedStrap" blink="{{selectedStrap}}">{{ selectedStrap }}</span>
+            </aside>
+
+        </div>
+    </div>
+</section>

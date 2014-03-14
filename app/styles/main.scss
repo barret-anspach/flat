@@ -1,0 +1,906 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+$cognac: rgba(162,87,33,1);
+$navy: rgba(29,53,88,1);
+
+$grid-unit: (320px / 9);
+$img-height: 308.15px;
+
+@import '../bower_components/sass-bootstrap/lib/bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic);
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Old Standard TT', serif;
+	color: $navy;
+	background: white;
+	legibility: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: .8px .8px .8px rgba(0,0,0,0.004);
+}
+
+/********* FONTS *********/
+
+h1 {
+	font-family: 'Old Standard TT', serif;
+	font-size: 23px;
+	line-height: $grid-unit;
+	font-style: italic;
+	text-align: center;
+	margin: 0;
+	padding: $grid-unit;
+}
+h2 {
+	font-family: 'Old Standard TT', serif;
+	font-size: 20px;
+	line-height: $grid-unit;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+h3 {
+	font-family: 'Old Standard TT', serif;
+	font-size: 18px;
+	line-height: $grid-unit;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	&:hover {
+		color: $cognac;
+		text-decoration: none;
+	}
+}
+.paragraphs {
+	position: relative;
+	display: inline-block;
+	min-width: ($grid-unit * 7);
+	max-width: ($grid-unit * 15);
+	margin: 0 auto;
+	p {
+//		float: left;
+		font-size: 14px;
+//		&:nth-of-type(2n) {
+//			float: right;
+//		}
+		&.lead {
+			font-size: 20px;
+			line-height: $grid-unit;
+		}
+	}
+}
+
+/********* MODULAR ELEMENTS *********/
+
+.spacer {
+	clear: both;
+}
+
+.horizontal-rule {
+	width: ($grid-unit * 15);
+	height: 0;
+	margin: 0 auto;
+	border-bottom: 1px solid $navy;
+}
+
+.artisan-logo-wrapper {
+	position: relative;
+	width: ($grid-unit * 6);
+	margin: 0 auto;
+	padding-top: ($grid-unit * 5);
+	.white {
+		.artisan-logo {
+//			position: fixed;
+//			top: $grid-unit;
+//			left: $grid-unit;
+			width: ($grid-unit * 6);
+			height: 88.62px;
+			.stroke {
+				fill: #FFF;
+			}
+		}
+	}
+	.navy {
+		.artisan-logo {
+			width: ($grid-unit * 6);
+			height: 88.62px;
+			.stroke {
+				fill: $navy;
+			}
+		}
+	}
+	.navy.hover {
+		.artisan-logo {
+			width: ($grid-unit * 6);
+			height: 88.62px;
+			.stroke {
+				fill: $navy;
+			}
+			&:hover {
+				.stroke {
+					fill: $cognac;
+				}
+			}
+		}
+	}
+}
+
+.panels {
+//	position: relative;
+//	width: 100%;
+	margin-bottom: $grid-unit;
+//	padding: 0 $grid-unit;
+//	background: white;
+	&.alligator-bkgd {
+//		background: $navy;
+	}
+	.main-message {
+		position: relative;
+		display: block;
+		width: ($grid-unit * 7);
+		margin: 0 auto;
+//		margin-top: ($grid-unit) * -1;
+		h1 {
+			color: $navy;
+			width: ($grid-unit * 7);
+			padding: $grid-unit 0;
+		}
+	}
+}
+
+.cart-button {
+	position: relative;
+	display: inline-block;
+	width: ($grid-unit * 3) - (($grid-unit * 2)/7);
+	height: (($grid-unit * 5)/7);
+	float: left;
+	//	margin: ($grid-unit / 2) (($grid-unit)/7) 0;
+	margin: .5em (($grid-unit)/7) 0;
+	border-radius: 4px;
+	background: $navy;
+	text-align: center;
+	font-weight: 700;
+//	clear: both;
+	&:hover {
+		cursor: pointer;
+		background: $cognac;
+	}
+	&.checkout-button {
+		float: right;
+	}
+	&.shop-button {
+		width: ($grid-unit * 5 ) - (($grid-unit * 2)/7);
+	}
+	&.disabled{
+		background: rgba($navy, .8);
+	}
+	a .bracket,
+	.bracket {
+		width: 1em;
+		height: 1em;
+		text-decoration: none;
+		&.bracket-left {
+			&:after {
+				position: absolute;
+				content: "\3008";
+				top: 3px;
+				left: 0.5em;
+				color: white;
+			}
+		}
+		&.bracket-right {
+			&:after {
+				position: absolute;
+				content: "\3009";
+				top: 3px;
+				right: 0.5em;
+				color: white;
+			}
+		}
+	}
+	h4 {
+		font-family: 'Old Standard TT', serif;
+		font-size: 14px;
+		line-height: (($grid-unit * 5)/7);
+		color: white;
+		margin: 0;
+	}
+}
+
+
+.tooltip {
+	font-weight: 700;
+	&.top .tooltip-arrow {
+			border-top-color: $navy;
+	}
+	&.left .tooltip-arrow {
+			border-left-color: $navy;
+			border-top-color: transparent;
+	}
+	&.right .tooltip-arrow {
+			border-right-color: $navy;
+			border-top-color: transparent;
+	}
+	.tooltip-inner {
+		background-color: $navy;
+	}
+}
+
+/********* SECTIONS *********/
+
+//#main {
+//	position: relative;
+//}
+//
+//#nav {
+//	position: fixed;
+//	left: 0;
+//	width: ($grid-unit * 3);
+//	ul {
+//		list-style: none;
+//		li {
+//			width: 100%;
+//			height: $grid-unit;
+//			line-height: $grid-unit;
+//			a {
+//				color: $navy;
+//				text-decoration: none;
+//				&:hover, &:active {
+//					color: $cognac;
+//					text-decoration: none;
+//				}
+//			}
+//		}
+//	}
+//}
+
+#heading {
+	margin-bottom: 0;
+}
+
+#about {
+	position: relative;
+	display: block;
+	width: ($grid-unit * 15);
+	height: auto;
+	margin: 0 auto;
+//	min-height: ($grid-unit * 20);
+	padding-top: ($grid-unit * 2);
+	padding-bottom: ($grid-unit * 2);
+	color: $navy;
+	h1 {
+		font-size: 46px;
+	}
+	.sample-strap {
+		width: ($grid-unit * 15);
+		height: 166.3px;            // for $grid-unit * 15
+//		height: 77.61px;            // for $grid-unit * 7
+		margin: 0 auto;
+		margin-bottom: $grid-unit;
+		background: url('../images/alligator.PNG') center center no-repeat;
+		background-size: contain;
+	}
+}
+
+#catalog {
+	position: relative;
+	width: ($grid-unit * 15);
+	min-height: ($grid-unit * 16);
+	margin: 0 auto;
+	padding-top: ($grid-unit);
+	color: $navy;
+	h1 {
+		font-size: 46px;
+		margin-top: $grid-unit;
+	}
+	.catalog-list {
+		width: ($grid-unit * 15);
+		margin: 0 auto;
+		.catalog-item {
+			position: relative;
+			display: inline-block;
+			float: left;
+			width: ($grid-unit * 7);
+			margin: 0 0 $grid-unit;
+			&.on-left {
+				margin-left: 0;
+				.item-detail {
+					left: ($grid-unit * 8);
+					.magnify {
+						left: ($grid-unit * 8) * -1;
+					}
+				}
+			}
+			&.on-right {
+				margin-left: $grid-unit;
+				.item-detail {
+					left: ($grid-unit * 8) * -1;    // Half-width detail overlay
+					.magnify {
+						left: ($grid-unit * 8);
+					}
+				}
+			}
+			.item-overview {
+				.item-image {
+					width: ($grid-unit * 7);
+//				    height: 616.3px;                // True height for the above image width
+					height: $img-height;
+					background-size: contain;
+					background-repeat: no-repeat;
+					&:hover {
+						cursor: pointer;
+					}
+				}
+				.item-title {
+					width: ($grid-unit * 7);
+					height: ($grid-unit * 2.5);
+					margin-top: ($grid-unit / 2);
+					padding-top: ($grid-unit / 2);
+					border-top: 1px solid $navy;
+					h3 {
+						font-size: 20px;
+						line-height: 24px;
+						text-align: center;
+						a {
+							color: $navy;
+							&:hover {
+								color: $cognac;
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+			.item-detail {
+				position: absolute;
+				z-index: 998;
+				top: 0;
+				width: ($grid-unit * 7);
+				min-height: 100%;
+				padding-bottom: $grid-unit;
+				background: rgba(255,255,255,.9);
+				opacity: 1;
+				h1 {
+					font-size: 23px;
+					margin-bottom: ($grid-unit / 2);
+					padding: 0;
+					padding-bottom: ($grid-unit / 2);
+					border-bottom: 1px solid $navy;
+				}
+				p {
+					width: ($grid-unit * 7);
+					margin-right: $grid-unit;
+				}
+				.hide-detail {                  // glyphicon-remove button for hiding model detail
+					position: absolute;
+					z-index: 999;
+					top: 0;
+					right: 0;
+					&:hover {
+						color: $cognac;
+					}
+				}
+				.magnify {
+					position: absolute;
+					display: block;
+					z-index: 300;
+					top: 0;
+//					left: ($grid-unit * 8) * -1;
+					width: ($grid-unit * 7);
+					height: $img-height;
+					background-size: contain;
+					background-repeat: no-repeat;
+					.item-detail-image {
+						z-index: 400;
+						position: relative;
+						display: block;
+						width: auto;
+						height: $img-height;
+						margin: 0 auto;
+						&:hover {
+							cursor: crosshair;
+						}
+					}
+				}
+				.selected-item {
+					display: block;
+//					float: right;
+					line-height: $grid-unit;
+					border-top: 1px solid $navy;
+//					margin-top: ($grid-unit / 2);
+					.selected-item-pcs {
+//						font-weight: 700;
+						font-style: italic;
+					}
+				}
+				.item-name {
+					margin-bottom: 6px;
+					border-bottom: 1px solid $navy;
+				}
+				.item-sizes {
+					position: relative;
+					width: ($grid-unit * 7);
+					min-height: ($grid-unit);
+					max-height: ($grid-unit * 4);
+					color: $navy;
+					h2 {
+						text-align: left;
+						font-style: italic;
+						.item-price {
+							float: right;
+							font-size: 18px;
+							font-style: normal;
+							padding-right: ($grid-unit);
+						}
+					}
+					p {
+						margin: 0;
+						padding: .5em 0;
+					}
+					.item-men-sizes {
+						border-top: 1px solid $navy;
+
+					}
+					.item-women-sizes {
+						border-top: 1px solid $navy;
+					}
+					.item-size {
+						display: inline-block;
+						cursor: pointer;
+						height: (($grid-unit * 5)/7);
+						font-style: italic;
+						line-height: (($grid-unit * 5)/7);
+//						font-weight: 700;
+//						margin-right: .25em;
+						padding: 0 3px;
+						border-radius: 4px;
+//						background: $navy;
+						&:hover, &:active {
+							color: white;
+							background: $cognac;
+						}
+						&.selected {
+							color: white;
+							background: $navy;
+							font-weight: 700;
+							letter-spacing: -.05em;
+							&:hover, &:active {
+								background: $navy;
+							}
+						}
+					}
+				}
+				.item-quantity {
+					height: $grid-unit + ($grid-unit / 7) + 2;
+					padding: .5em 0;
+					border-top: 1px solid $navy;
+					.quantity-text {
+						display: inline-block;
+						padding-top: ($grid-unit / 7);
+					}
+					.quantity-picker {
+						position: relative;
+						display: inline-block;
+						float: right;
+						width: ($grid-unit * 2) + (($grid-unit * 5) / 7);
+						height: (($grid-unit * 5)/7) + 2;
+						margin-right: ($grid-unit / 7);
+						border: 1px solid $navy;
+						border-radius: 4px;
+						text-align: center;
+						&:hover, &:focus, &:active {
+							background: white;
+							border: 1px solid $cognac;
+						}
+						&.selected {
+							color: $cognac;
+							border: 1px solid $cognac;
+						}
+						.quantity-more {
+							position: absolute;
+							top: 2px;
+							right: 8px;
+							font-weight: 700;
+							cursor: pointer;
+							&:hover {
+								color: $cognac;
+							}
+						}
+						.quantity-less {
+							position: absolute;
+							top: 2px;
+							left: 8px;
+							font-weight: 700;
+							cursor: pointer;
+							&:hover {
+								color: $cognac;
+							}
+						}
+						.counter-field {
+							cursor: text;
+							width: 100%;
+							height: (($grid-unit * 5)/7);
+							margin: 0 auto;
+							border: 0;
+							font-style: italic;
+							color: $navy;
+							line-height: (($grid-unit * 5)/7);
+							text-align: center;
+							background: none;
+							&:focus {
+								outline: none;
+								outline-offset: 0;
+							}
+						}
+					}
+				}
+				.item-options {
+					position: relative;
+					display: inline-block;
+					width: ($grid-unit * 7);
+					min-height: $grid-unit;
+					.item-color-options {                       // Color swatches to choose from
+						.item-color {
+							display: inline-block;
+							float: left;
+							width: (($grid-unit * 5)/7);
+							height: (($grid-unit * 5)/7);
+							margin: ($grid-unit / 7);
+							padding: 4px 5px 5px;
+							border-radius: 4px;
+							background-color: $cognac;
+							color: white;
+							&.light-color {
+								border: 1px solid $navy;
+								padding: 3px 4px 5px;
+								.color-selected {
+									color: $navy;
+									&:hover {
+										color: $navy;
+									}
+								}
+							}
+							&.light-color:hover, &.light-color:active {
+								padding: 8px 9px 10px;
+							}
+							.color-selected {
+								color: white;
+								&:hover {
+									color:white;
+								}
+							}
+							&:hover, &:active {
+								width: $grid-unit;
+								height: $grid-unit;
+								margin: 0;
+								padding: 9px 10px 10px;
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#cart {
+	position: relative;
+	display: block;
+	width: ($grid-unit * 15);
+	height: auto;
+	margin: 0 auto;
+	//	min-height: ($grid-unit * 20);
+	padding-top: ($grid-unit * 2);
+	padding-bottom: ($grid-unit * 2);
+	color: $navy;
+	h1 {
+		font-size: 46px;
+		margin-top: $grid-unit;
+	}
+	.artisan-logo-wrapper {
+		padding-top: ($grid-unit * 2);
+	}
+	.cart-table {
+		margin-bottom: ($grid-unit * 2);
+		border-color: $navy;
+		table.table {
+			display: table;
+			margin-bottom: $grid-unit;
+//			border-collapse: collapse;
+			thead {
+				tr {
+					th {
+						padding-left: 0;
+						padding-right: ($grid-unit / 2);
+						font-weight: 700;
+//						font-style: italic;
+						border-bottom: 2px solid $navy;
+						&:last-of-type {
+							padding-right: 0;
+						}
+					}
+				}
+			}
+			tbody {
+				border-top: 2px solid $navy;
+				border-bottom: $grid-unit solid transparent;
+				tr {
+					&:first-of-type {
+						border-top: 1px solid transparent;
+					}
+					td {
+						position: relative;
+						padding-left: 0;
+						padding-right: ($grid-unit / 2);
+						vertical-align: middle;
+						&:last-of-type {
+							padding-right: 0;
+						}
+						h2 {
+//							font-style: italic;
+							text-align: left;
+						}
+						p {
+							margin-bottom: 0;
+							padding-bottom: 0;
+						}
+					}
+//					td.cart-item-model {
+//						h2 {
+//							text-align: left;
+//							font-style: italic;
+//						}
+//						span {
+//							clear: both;
+//						}
+//					}
+					td.cart-image-holder {
+						margin: 0;
+						padding: 0;
+					}
+					.cart-image {
+						position: relative;
+						width: ($grid-unit * 15);
+						height: ($grid-unit * 7);
+						&:before {
+							content: '';
+							position: absolute;
+							display: block;
+							top: -($grid-unit * 3);
+							left: ($grid-unit * 5);
+							width: ($grid-unit * 5);
+							height: ($grid-unit * 13);
+							background-image: url('../images/parallel-strap.png');
+							background-position: center center;
+							background-repeat: no-repeat;
+							background-size: contain;
+							transform:rotate(90deg);
+							transform-origin: center center;
+							-webkit-backface-visibility: hidden;
+						}
+					}
+					&.header {
+						border-top: 1px solid rgba($navy, .5);
+						td {
+							border: 0;
+							.remove-from-cart {                  // glyphicon-remove button for hiding model detail
+								position: absolute;
+								z-index: 999;
+								top: 50%;
+								margin-top: -7px;
+//								right: -($grid-unit);
+								right: 0;
+								&:hover {
+									color: $cognac;
+								}
+							}
+							h2 {
+								text-align: center;
+							}
+						}
+					}
+					&.col-titles {
+						th {
+							padding-left: 0;
+							padding-right: ($grid-unit / 2);
+							font-weight: 700;
+							font-style: italic;
+							border-top: 1px solid $navy;
+							&:last-of-type {
+								padding-right: 0;
+							}
+						}
+					}
+					&.info {
+						td {
+							border-top: 1px solid rgba($navy, .5);
+							text-align: left;
+							.th {
+								display: none;
+							}
+						}
+					}
+				}
+				&.totals {
+					.totals-right {
+						text-align: right;
+					}
+					.totals-heading {
+						font-style: italic;
+					}
+				}
+			}
+		}
+	}
+}
+
+#footer {
+	position: relative;
+	width: 100%;
+	min-height: ($grid-unit * 3);
+}
+
+
+/* Responsive: MOBILE PORTRAIT */
+
+@media screen and (max-width: 480px) {
+	.horizontal-rule {
+		width: ($grid-unit * 7);
+	}
+	.artisan-logo-wrapper {
+		padding-top: ($grid-unit * 2);
+	}
+	#about,
+	#catalog {
+		width: ($grid-unit * 7);
+	}
+	#about {
+		.sample-strap {
+			width: ($grid-unit * 7);
+			height: 77.61px;
+		}
+		.paragraphs {
+			.lead {
+				font-size: 15px;
+				line-height: (($grid-unit * 5) / 7);
+			}
+		}
+	}
+	#catalog {
+		.catalog-list {
+			width: ($grid-unit * 7);
+			.catalog-item {
+				width: ($grid-unit * 7);
+				&.on-left .item-detail,
+				&.on-right .item-detail {
+					left: 0;
+					top: $img-height + ($grid-unit * 3);
+					.magnify {
+						left: 0;
+						top: ($img-height + ($grid-unit * 3)) * -1;
+					}
+				}
+				&.on-right {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+	#cart {
+		width: ($grid-unit * 7);
+		padding-top: $grid-unit;
+		padding-bottom: $grid-unit;
+		.artisan-logo-wrapper {
+			padding-top: $grid-unit;
+		}
+		h1 {
+			margin-top: 0;
+		}
+		.cart-table {
+			table.table {
+				display: inline-table;
+				width: ($grid-unit * 7);
+				thead {
+					&.totals {
+						display: table-header-group;
+					}
+				}
+				tbody {
+					width: ($grid-unit * 7);
+					tr {
+						width: ($grid-unit * 7);
+						td {
+							width: ($grid-unit * 7);
+							float: left;
+						}
+						.cart-image {
+							width: ($grid-unit * 7);
+							height: ($grid-unit * 3.5);
+							&:before {
+								top: -45px;
+								left: 80px;
+								width: ($grid-unit * 2.5);
+								height: ($grid-unit * 6);
+								background-image: url('../images/parallel-strap.png');
+								background-position: center center;
+								background-repeat: no-repeat;
+								background-size: contain;
+								transform:rotate(90deg);
+								transform-origin: center center;
+								-webkit-backface-visibility: hidden;
+							}
+						}
+						&.col-titles {
+							display: none;
+						}
+						&.info {
+							td {
+								padding-right: 0;
+								text-align: right;
+								.th {
+									display: inline;
+									float: left;
+									font-style: italic;
+								}
+							}
+						}
+					}
+					&.totals {
+						tr {
+							display: table-row;
+							width: ($grid-unit * 7);
+							td {
+								width: auto;
+								float: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* Responsive: MOBILE LANDSCAPE */
+
+@media screen and (max-width: 568px) {
+	.artisan-logo-wrapper {
+		padding-top: $grid-unit * 2;
+	}
+//	#about {
+//		.paragraphs {
+//			.lead {
+//				font-size: 15px;
+//				line-height: (($grid-unit * 5) / 7);
+//			}
+//		}
+//	}
+}
+
+/* Responsive: Large Desktop */
+//@media screen and (min-width: 1201px) and (max-width: 4000px) {
+//	.artisan-logo-wrapper {
+//		width: ($grid-unit * 7);
+//		margin: 0 auto;
+//		.navy {
+//			.artisan-logo {
+//				width: ($grid-unit * 7);
+//				height: 102.74px;
+//			}
+//		}
+//	}
+//}

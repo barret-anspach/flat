@@ -1,0 +1,159 @@
+<div id="main">
+    <section id="heading" class="panels" panel background-img="../images/breschia.jpg" wide="../images/breschia-wide.jpg" size="cover" position="top center" stellar-background="0.8">
+        <div class="artisan-logo-wrapper">
+            <!--<div class="white" ng-include="'../images/artisan-logo.svg'"></div>-->
+            <div class="navy" ng-include="'../images/artisan-logo.svg'"></div>
+        </div>
+        <div class="main-message">
+            <h1>Luxurious watch straps,<br>
+                Handmade in Italy.</h1>
+        </div>
+    </section>
+
+    <section id="about" class="panels">
+        <h1>About us</h1>
+
+        <div class="sample-strap"></div>
+
+        <div class="paragraphs">
+            <p class="lead">Utilizing only the finest materials available, watch strap maker Artisan of Italy preserves the rich traditions of Italian leather craftsmen while drawing upon the most sophisticated and highly-regarded techniques in the fine leather watch strap industry.</p>
+            <p class="lead">Our family-owned and family-run business is dedicated to providing our customers with a beautiful selection of leather straps to perfectly complement a variety of watches.</p>
+        </div>
+    </section>
+
+    <div class="horizontal-rule"></div>
+
+    <section id="catalog" class="panels">
+        <h1>Our catalog</h1>
+
+        <div class="catalog-list">
+            <div class="catalog-item" ng-repeat="model in strap.models" ng-class="cls($index)">
+
+                <!-- CATALOG ITEM OVERVIEW -->
+
+                <div class="item-overview">
+                    <div class="item-image" background-img="{{ model.image }}" ng-click="selectModel(model)"></div>
+
+                    <div class="item-title">
+                        <h3><a ng-click="selectModel(model)">{{ model.title }}</a></h3>
+                    </div>
+                </div>
+
+                <aside class="item-detail" ng-show="selectedModel.id === model.id">
+
+                    <!-- DETAIL IMAGE / MAGNIFY -->
+
+                    <div class="magnify" ng-if="selectedColor.image" background-img="{{ selectedColor.image }}">
+                        <!-- on hover, shows magnified detail image -->
+                        <div class="item-detail-image" magnify="2" img="{{ selectedColor.image }}"></div>
+                        <!-- 'contained' and centered detail image -->
+                        <!--<div class="item-detail-image unmagnify"></div>-->
+                    </div>
+
+                    <span class="hide-detail glyphicon glyphicon-remove" ng-click="unSelectModel()"></span>
+
+                    <!-- COLOR NAME -->
+
+                    <div class="item-sizes item-name" ng-show="selectedColor">
+                        <h2>{{ selectedColor.name }} <span class="item-price">${{ selectedModel.msrp }}</span></h2>
+                    </div>
+
+                    <!-- ITEM DETAILS -->
+
+                    <p>{{ model.desc }}</p>
+
+                    <!-- COLOR OPTIONS -->
+
+                    <div class="item-options">
+                        <div class="item-color-options" ng-repeat="color in model.colors">
+
+                            <a ng-click="selectColor(color)">
+                                <div class="item-color" background-img color="{{ color.rgb }}" tooltip="{{ color.name }}">
+                                    <span ng-show="selectedColor.id === color.id" class="color-selected glyphicon glyphicon-ok"></span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- SIZE OPTIONS -->
+
+                    <div class="item-sizes" ng-show="selectedColor">
+                        <p class="item-men-sizes" ng-repeat="man in selectedColor.men">
+                                <span ng-show="man.regulars.length">
+                                    Men's Reg.
+                                    <span class="item-size" ng-repeat="regular in man.regulars" ng-class="{selected: selectedSize.id === regular.id}"
+                                          ng-click="selectSize(regular)">{{ regular.no }}</span>
+                                </span>
+                            <br>
+                                <span ng-show="man.longs.length">
+                                    Long
+                                    <span class="item-size" ng-repeat="long in man.longs" ng-class="{selected: selectedSize.id === long.id}"
+                                          ng-click="selectSize(long)">{{ long.no }}</span>
+                                </span>
+                        </p>
+                        <p class="item-women-sizes" ng-repeat="woman in selectedColor.women">
+                                <span ng-show="woman.regulars.length">
+                                    Women's Reg.
+                                    <span class="item-size" ng-repeat="regular in woman.regulars" ng-class="{selected: selectedSize.id === regular.id}"
+                                          ng-click="selectSize(regular)">{{ regular.no }}</span>
+                                </span>
+                            <br>
+                                <span ng-show="woman.longs.length">
+                                    Long
+                                    <span class="item-size" ng-repeat="long in woman.longs" ng-class="{selected: selectedSize.id === long.id}"
+                                          ng-click="selectSize(long);">{{ long.no }}</span>
+                                </span>
+                        </p>
+                    </div>
+
+                    <!-- QUANTITY -->
+
+                    <div class="item-quantity" ng-disabled="!selectedStrap">
+                        <p>
+                            <span class="quantity-text">Quantity:</span>
+                                <span class="quantity-picker">
+                                    <input class="counter-field" type="text" placeholder="0" ng-disabled="!selectedStrap"
+                                           ng-value="selectedStrap.quantity" ng-model="selectedStrap.quantity">
+                                    <!--<span class="quantity-less glyphicon glyphicon-minus"-->
+                                          <!--ng-click="qtyMinus()"></span>-->
+                                    <!--<span class="quantity-more glyphicon glyphicon-plus"-->
+                                          <!--ng-click="qtyPlus()"></span>-->
+                                    <span class="quantity-less" ng-class="{disabled: !selectedStrap.quantity}"
+                                          ng-click="qtyMinus()">&#8722;</span>
+                                    <span class="quantity-more"
+                                          ng-click="qtyPlus()">&#43;</span>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- ADD TO CART -->
+
+                    <span class="selected-item" blink="{{selectedStrap}}">
+                        <span ng-show="selectedStrap">
+                            {{ selectedStrap.id }}
+                        </span>
+                        <span ng-show="!selectedSize">
+                            <i>Please select a size.</i>
+                        </span>
+                        <span ng-show="selectedStrap.quantity">
+                             &times;
+                            <span class="selected-item-pcs">
+                                <ng-pluralize count="selectedStrap.quantity"
+                                      when="{'1': '{}pc.',
+                                             'other': '{}pcs.'}">
+                                </ng-pluralize>
+                            </span>
+                        </span>
+                    </span>
+
+                    <div class="cart-button" ng-class="{disabled: !selectedStrap.quantity}">
+                        <h4>Add to cart</h4>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+</div>
